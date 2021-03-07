@@ -56,8 +56,8 @@ function App() {
     });
   };
 
-  const handleFaveCoin = (coinid, isfaved) => {
-    updatefaveCoin(coinid, isfaved, uid);
+  const handleFaveCoin = (coinid, isfaved, coinName) => {
+    updatefaveCoin(coinid, isfaved, uid, coinName);
   };
 
   useEffect(() => {

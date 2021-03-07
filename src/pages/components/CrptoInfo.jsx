@@ -58,7 +58,7 @@ export const CrptoInfo = ({
           shape="circle"
           icon={isFaved ? <StarFilled /> : <StarOutlined />}
           onClick={() => {
-            handleFaveCoin(id, isFaved);
+            handleFaveCoin(id, isFaved, name);
           }}
         />
       </Tooltip>
@@ -101,6 +101,7 @@ export const CrptoInfo = ({
               }
             />
           </Sparklines>
+
           {priceNVol}
           {!isPhone && (
             <Text className="priceChange">

@@ -62,7 +62,7 @@ export const CrptoInfoPostFetch = ({
           icon={<CloseOutlined />}
           type="default"
           shape="circle"
-          onClick={() => handleFaveCoin(coinid, true)}
+          onClick={() => handleFaveCoin(coinid, true, name)}
         />
       </Tooltip>
     );

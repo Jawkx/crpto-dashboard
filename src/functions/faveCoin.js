@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import { message } from "antd";
 import { db } from "./initFirebase";
 
-export const updatefaveCoin = (coinid, isFaved, uid) => {
+export const updatefaveCoin = (coinid, isFaved, uid, coinname) => {
   const docRef = db.collection("crptoDb").doc(uid);
 
   if (isFaved) {
@@ -10,14 +10,14 @@ export const updatefaveCoin = (coinid, isFaved, uid) => {
       .update({
         favCoins: firebase.firestore.FieldValue.arrayRemove(coinid),
       })
-      .then(() => message.error(`Removed "${coinid}" from favourite`));
+      .then(() => message.error(`Removed ${coinname} from favourite`));
   } else {
     docRef
       .update({
         favCoins: firebase.firestore.FieldValue.arrayUnion(coinid),
       })
       .then(() => {
-        message.success(`Added "${coinid}" to favourite`);
+        message.success(`Added ${coinname} to favourite`);
       });
   }
 };

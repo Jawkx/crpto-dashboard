@@ -54,6 +54,11 @@
   }
 }
 
+.ant-list-item-action {
+  display: flex;
+  justify-content: center;
+}
+
 .currency-selector {
   .ant-cascader-picker {
     width: 6em;
