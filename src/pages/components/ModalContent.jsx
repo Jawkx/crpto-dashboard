@@ -10,6 +10,7 @@ const { Text } = Typography;
 export const ModalContent = ({ coinid, currency }) => {
   const [coinData, setCoinData] = useState(null);
 
+  console.log(coinData);
   useEffect(() => {
     getCoinData(coinid, setCoinData);
   }, [coinid]);
@@ -20,6 +21,10 @@ export const ModalContent = ({ coinid, currency }) => {
     return (
       <div className="modal-content">
         <Image className="img" src={imgUrl} width={130} />
+        <br />
+        <Text type="secondary">
+          <p> {coinData.symbol} </p>
+        </Text>
         <Divider> Ranking</Divider>
         <div className="modal-container">
           <p> Coin Gecko Rank: {coinData.coingecko_rank} </p>
@@ -45,16 +50,22 @@ export const ModalContent = ({ coinid, currency }) => {
             {marketData.low_24h[currency] + " " + currency.toUpperCase()}
           </p>
           <p>
-            <Text strong>Price change in 24 h: </Text>
+            <Text strong>Price change in 24 hours: </Text>
             {marketData.price_change_percentage_24h > 0
               ? "+" + marketData.price_change_percentage_24h + " %"
               : marketData.price_change_percentage_24h + " %"}
           </p>
           <p>
-            <Text strong> Price change in 7 d: </Text>
+            <Text strong> Price change in 7 days: </Text>
             {marketData.price_change_percentage_7d > 0
               ? "+" + marketData.price_change_percentage_7d + " %"
               : marketData.price_change_percentage_7d + " %"}
+          </p>
+          <p>
+            <Text strong> Price change in 30 days: </Text>
+            {marketData.price_change_percentage_30d > 0
+              ? "+" + marketData.price_change_percentage_30d + " %"
+              : marketData.price_change_percentage_30d + " %"}
           </p>
         </div>
         <Divider> 7 days price graph </Divider>
@@ -81,7 +92,10 @@ export const ModalContent = ({ coinid, currency }) => {
         )}
         <Divider />
         <div className="modal-container">
-          <p>Last updated on : {coinData.last_updated}</p>
+          <p>
+            Last updated on :{" "}
+            {coinData.last_updated.replace("T", "@").replace("Z", "")}
+          </p>
         </div>
       </div>
     );
@@ -90,6 +104,13 @@ export const ModalContent = ({ coinid, currency }) => {
       <div className="modal-content">
         <Skeleton.Image active />
         <Skeleton active />
+        <Divider />
+        <Skeleton active />
+        <Divider />
+        <Skeleton active />
+        <Divider />
+        <Skeleton active />
+        <Divider />
       </div>
     );
   }
